@@ -1,9 +1,11 @@
 language: python
 python:
- - "3.7"
- - "3.8"
- - "3.9"
- - "3.9-dev"  # 3.9 development branch
- - "nightly"
+  - "3.7"
+install:
+  - pip3 install --upgrade pip
+  - pip install coveralls
 script:
- - python CreditCardValidatorTest.py
+  - python3 CreditCardValidatorTest.py
+  - coverage run CreditCardValidatorTest.py
+  - coverage report -m
+after_success: coveralls
